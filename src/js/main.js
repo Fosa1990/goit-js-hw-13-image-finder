@@ -21,13 +21,13 @@ function onImgSearch(e) {
   }
 
   apiImageService.resetPage();
-  clearGallery();
-  fetchImages();
+  onClearGallery();
+  onFetchImages();
 }
 
-function fetchImages() {
+function onFetchImages() {
   apiImageService
-    .fetchImages()
+    .onFetchImages()
     .then(images => {
       renderImages(images.hits);
     })
@@ -46,12 +46,12 @@ function renderImages(images) {
   galleryEL.insertAdjacentHTML('beforeend', imagesTemplate(images));
 }
 
-function clearGallery() {
+function onClearGallery() {
   galleryEL.innerHTML = '';
 }
 
 function onLoadMoreBtnClick() {
-  fetchImages();
+  onFetchImages();
 
   const options = {
     top: null,
@@ -67,7 +67,7 @@ function onLoadMoreBtnClick() {
 const onEntry = entries => {
   entries.forEach(entry => {
     if (entry.isIntersecting && apiImageService.query !== '') {
-      apiImageService.fetchImages().then(images => {
+      apiImageService.onFetchImages().then(images => {
         renderImages(images.hits);
         apiImageService.incrementPage();
       });
