@@ -2,7 +2,7 @@ import { error } from '@pnotify/core';
 import '@pnotify/core/dist/PNotify.css';
 import '@pnotify/core/dist/BrightTheme.css';
 
-export function onEmptyInputError() {
+export function onErrorEmptyInput() {
   error({
     title: 'Error! Σ(‘◉⌓◉’)',
     text: 'Enter the query correctly... (；☉_☉)',
@@ -13,7 +13,7 @@ export function onEmptyInputError() {
   });
 }
 
-export function noSuchMatches() {
+export function onErrorNoSuchMatches() {
   error({
     title: 'Error! Σ(‘◉⌓◉’)',
     text: 'No such matches... (；☉_☉)',
