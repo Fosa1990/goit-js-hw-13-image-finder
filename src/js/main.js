@@ -3,7 +3,7 @@ import debounce from 'lodash.debounce';
 import imagesTemplate from '../templates/imageCard.hbs';
 import ApiImagesService from './apiService.js';
 import refs from './refs.js';
-import { onEmptyInputError, noSuchMatches } from './notify.js';
+import { onErrorEmptyInput, onErrorNoSuchMatches } from './notify.js';
 
 const { bodyEL, galleryEL, formEL, inputEL, loadMoreBtnEL, sentinelEL } = refs;
 
@@ -17,7 +17,7 @@ function onImgSearch(e) {
   apiImageService.query = inputEL.value;
 
   if (apiImageService.query === '') {
-    return onEmptyInputError();
+    return onErrorEmptyInput();
   }
 
   apiImageService.resetPage();
@@ -40,7 +40,7 @@ function onFetchError(error) {
 
 function renderImages(images) {
   if (images.length === 0) {
-    return noSuchMatches();
+    return onErrorNoSuchMatches();
   }
 
   galleryEL.insertAdjacentHTML('beforeend', imagesTemplate(images));
