@@ -1,0 +1,25 @@
+import { error } from '@pnotify/core';
+import '@pnotify/core/dist/PNotify.css';
+import '@pnotify/core/dist/BrightTheme.css';
+
+export function onEmptyInputError() {
+  error({
+    title: 'Error! Σ(‘◉⌓◉’)',
+    text: 'Enter the query correctly... (；☉_☉)',
+    delay: 2000,
+    closerHover: true,
+    mouseReset: true,
+    shadow: true,
+  });
+}
+
+export function noSuchMatches() {
+  error({
+    title: 'Error! Σ(‘◉⌓◉’)',
+    text: 'No such matches... (；☉_☉)',
+    delay: 2000,
+    closerHover: true,
+    mouseReset: true,
+    shadow: true,
+  });
+}
