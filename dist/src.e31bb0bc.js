@@ -2820,7 +2820,7 @@ class ApiImagesService {
     this.page = 1;
   }
 
-  async fetchImages() {
+  async onFetchImages() {
     const url = `${BASE_URL}${MAIN_SEARCH_SETTINGS}q=${this.searchQuery}&page=${this.page}&per_page=12&key=${API_KEY}`;
     return await fetch(url).then(response => {
       this.incrementPage();
@@ -2936,12 +2936,12 @@ function onImgSearch(e) {
   }
 
   apiImageService.resetPage();
-  clearGallery();
-  fetchImages();
+  onClearGallery();
+  onFetchImages();
 }
 
-function fetchImages() {
-  apiImageService.fetchImages().then(images => {
+function onFetchImages() {
+  apiImageService.onFetchImages().then(images => {
     renderImages(images.hits);
   }).catch(onFetchError);
 }
@@ -2958,12 +2958,12 @@ function renderImages(images) {
   galleryEL.insertAdjacentHTML('beforeend', (0, _imageCard.default)(images));
 }
 
-function clearGallery() {
+function onClearGallery() {
   galleryEL.innerHTML = '';
 }
 
 function onLoadMoreBtnClick() {
-  fetchImages();
+  onFetchImages();
   const options = {
     top: null,
     behavior: 'smooth'
@@ -2977,7 +2977,7 @@ function onLoadMoreBtnClick() {
 const onEntry = entries => {
   entries.forEach(entry => {
     if (entry.isIntersecting && apiImageService.query !== '') {
-      apiImageService.fetchImages().then(images => {
+      apiImageService.onFetchImages().then(images => {
         renderImages(images.hits);
         apiImageService.incrementPage();
       });
@@ -3188,7 +3188,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56992" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52557" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
