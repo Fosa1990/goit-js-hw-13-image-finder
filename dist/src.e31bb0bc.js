@@ -2870,8 +2870,8 @@ var global = arguments[3];
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.onEmptyInputError = onEmptyInputError;
-exports.noSuchMatches = noSuchMatches;
+exports.onErrorEmptyInput = onErrorEmptyInput;
+exports.onErrorNoSuchMatches = onErrorNoSuchMatches;
 
 var _core = require("@pnotify/core");
 
@@ -2879,7 +2879,7 @@ require("@pnotify/core/dist/PNotify.css");
 
 require("@pnotify/core/dist/BrightTheme.css");
 
-function onEmptyInputError() {
+function onErrorEmptyInput() {
   (0, _core.error)({
     title: 'Error! Σ(‘◉⌓◉’)',
     text: 'Enter the query correctly... (；☉_☉)',
@@ -2890,7 +2890,7 @@ function onEmptyInputError() {
   });
 }
 
-function noSuchMatches() {
+function onErrorNoSuchMatches() {
   (0, _core.error)({
     title: 'Error! Σ(‘◉⌓◉’)',
     text: 'No such matches... (；☉_☉)',
@@ -2932,7 +2932,7 @@ function onImgSearch(e) {
   apiImageService.query = inputEL.value;
 
   if (apiImageService.query === '') {
-    return (0, _notify.onEmptyInputError)();
+    return (0, _notify.onErrorEmptyInput)();
   }
 
   apiImageService.resetPage();
@@ -2952,7 +2952,7 @@ function onFetchError(error) {
 
 function renderImages(images) {
   if (images.length === 0) {
-    return (0, _notify.noSuchMatches)();
+    return (0, _notify.onErrorNoSuchMatches)();
   }
 
   galleryEL.insertAdjacentHTML('beforeend', (0, _imageCard.default)(images));
@@ -3188,7 +3188,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61143" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56992" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
