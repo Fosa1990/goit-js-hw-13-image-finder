@@ -1,20 +1,20 @@
 // import throttle from 'lodash.throttle';
-import debounce from 'lodash.debounce';
+// import debounce from 'lodash.debounce';
 import imagesTemplate from '../templates/imageCard.hbs';
 import ApiImagesService from './apiService.js';
 import refs from './refs.js';
 import { onErrorEmptyInput, onErrorNoSuchMatches } from './notify.js';
 
-const { bodyEL, galleryEL, formEL, inputEL, loadMoreBtnEL, sentinelEL } = refs;
+const { galleryEL, formEL, sentinelEL } = refs;
 
 const apiImageService = new ApiImagesService();
 
-formEL.addEventListener('input', debounce(onImgSearch, 500));
+formEL.addEventListener('submit', onImgSearch, 500);
 
 function onImgSearch(e) {
   e.preventDefault();
 
-  apiImageService.query = inputEL.value;
+  apiImageService.query = e.currentTarget.elements.query.value.trim();
 
   if (apiImageService.query === '') {
     return onErrorEmptyInput();
@@ -28,9 +28,7 @@ function onImgSearch(e) {
 function onFetchImages() {
   apiImageService
     .onFetchImages()
-    .then(images => {
-      renderImages(images.hits);
-    })
+    .then(images => renderImages(images.hits))
     .catch(onFetchError);
 }
 
