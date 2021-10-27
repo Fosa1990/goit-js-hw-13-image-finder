@@ -9,7 +9,7 @@ const { galleryEL, formEL, sentinelEL } = refs;
 
 const apiImageService = new ApiImagesService();
 
-formEL.addEventListener('submit', onImgSearch, 500);
+formEL.addEventListener('submit', onImgSearch);
 
 function onImgSearch(e) {
   e.preventDefault();
