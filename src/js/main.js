@@ -17,6 +17,7 @@ function onImgSearch(e) {
   apiImageService.query = e.currentTarget.elements.query.value.trim();
 
   if (apiImageService.query === '') {
+    onClearGallery();
     return onErrorEmptyInput();
   }
 
